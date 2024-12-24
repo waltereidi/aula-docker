@@ -8,10 +8,16 @@ ARG GID
 RUN apt update && apt upgrade -y
 RUN apt install -y sudo nano zip
 RUN apt install -y sudo nano zip git
+RUN apt install -y sudo unzip 
+RUN apt install -y sudo libzip-dev
+RUN apt install -y sudo wget
+RUN apt install -y sudo php-xdebug
 
 RUN mkdir /var/www
 # PHP
 RUN apt install -y php8.2-fpm php8.2-mbstring php8.2-xml php8.2-pgsql php8.2-curl php8.2-zip
+RUN apt install -y php-dev autoconf automake
+
 
 # Composer
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
@@ -54,5 +60,8 @@ RUN chmod 0440 /etc/sudoers.d/$USERNAME
 WORKDIR /var/www/
 ####
 COPY docker/start.sh /
+
+COPY docker/php.ini-debug /etc/php/8.2/fpm/php.ini
+
 RUN chmod +x /start.sh
 ENTRYPOINT ["/start.sh"]

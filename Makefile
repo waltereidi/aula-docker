@@ -10,7 +10,8 @@ run:
 	--volume=./front:/var/www/front \
 	--volume=./docker/back.conf:/etc/nginx/sites-available/back.conf \
 	--volume=./docker/front.conf:/etc/nginx/sites-available/front.conf \
-	--name meu_container debian12
+	--name meu_container debian12 \
+	--extra_hosts = host.docker.internal:host-gateway
 bash:
 	docker exec -it -u walter meu_container bash 
 root:
