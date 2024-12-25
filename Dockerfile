@@ -3,6 +3,9 @@ FROM debian:12.6-slim
 ARG USERNAME
 ARG UID
 ARG GID
+ARG GITREPOSBACKPARAM
+ARG GITREPOSFRONTPARAM
+
 
 # Basic setup
 RUN apt update && apt upgrade -y
@@ -63,5 +66,12 @@ COPY docker/start.sh /
 
 COPY docker/php.ini-debug /etc/php/8.2/fpm/php.ini
 
-RUN chmod +x /start.sh
+RUN sudo chmod +x /start.sh
+RUN sudo chown -R $USERNAME:$USERNAME /var/www 
+RUN sudo chmod 777 -R /var/www
+
+# Definir variáveis de ambiente
+ENV GITREPOSBACK=$GITREPOSBACKPARAM
+ENV GITREPOSFRONT=$GITREPOSFRONTPARAM
+
 ENTRYPOINT ["/start.sh"]

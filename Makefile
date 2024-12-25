@@ -1,5 +1,15 @@
+buildwithrepos:
+	docker build --build-arg GITREPOSBACKPARAM=https://github.com/waltereidi/bibliotecaonline.git \
+	--build-arg GITREPOSFRONTPARAM=https://github.com/waltereidi/loja-frontend.git \
+	--build-arg USERNAME=walter \
+	--build-arg UID=1000 \
+	--build-arg GID=1000 -t debian12 . 
+
 build:
-	docker build --build-arg USERNAME=walter --build-arg UID=1000 --build-arg GID=1000 -t debian12 .
+	docker build
+	--build-arg USERNAME=walter \
+	--build-arg UID=1000 \
+	--build-arg GID=1000 -t debian12 . 
 run:
 	docker run -d \
 	-p 8000:8000 \
@@ -11,7 +21,7 @@ run:
 	--volume=./docker/back.conf:/etc/nginx/sites-available/back.conf \
 	--volume=./docker/front.conf:/etc/nginx/sites-available/front.conf \
 	--name meu_container debian12 \
-	--extra_hosts = host.docker.internal:host-gateway
+	--extra_hosts = host.docker.internal:host-gateway 
 bash:
 	docker exec -it -u walter meu_container bash 
 root:
@@ -27,3 +37,4 @@ rmi:
 clean: rm rmi
 restart: stop clean build run start
 launch: build run start
+launchwithrepos: buildwithrepos run start
