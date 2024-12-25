@@ -11,11 +11,16 @@
 
 
 <h2>Rodar o container pela primeira vez sem repositorios</h2>
-<p>1 - sudo make launch</p>
-<p>2 - configure o nginx em docker\back.conf e docker\front.conf</p>
-<p>3 - Adicione os repositorios manualmente</p>
+<ol>
+    <li>sudo make launch</li>
+    <li>configure o nginx em docker\back.conf e docker\front.conf</li>
+    <li>Adicione os repositorios manualmente</li>
+</ol>
+
 
 <h2>Refazer o container após já ter sido buildado uma vez </h2>
-<p>1 - sudo make deleteandrebuild </p>
+<ol>
+    <li>sudo make deleteandrebuild </li>
+</ol>
 
 
