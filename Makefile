@@ -6,8 +6,7 @@ buildwithrepos:
 	--build-arg GID=1000 -t debian12 . 
 
 build:
-	docker build
-	--build-arg USERNAME=walter \
+	docker build --build-arg USERNAME=walter \
 	--build-arg UID=1000 \
 	--build-arg GID=1000 -t debian12 . 
 run:
