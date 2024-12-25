@@ -35,6 +35,6 @@ rm:
 rmi:
 	docker image rm debian12
 clean: rm rmi
-restart: stop clean build run start
+deleteandrebuild: stop clean build run start
 launch: build run start
 launchwithrepos: buildwithrepos run start
