@@ -3,8 +3,8 @@
 <h2>Rodar o container e baixar repositorios do git backend e frontend</h2>
 <ol>
     <li>edite até o arquivo Makefile</li>
-    <li>Modifique os parametros GITREPOSBACKPARAM e GITREPOSFRONTPARAM com a URL dos repositorios para serem baixados</li>
-    <li>Edite os arquivos docker\back.conf e docker\front.conf para configurar o nginx ,adicione a entrada do seu repositorio</li>
+    <li>Modifique os parametros <strong>GITREPOSBACKPARAM</strong> e <strong>GITREPOSFRONTPARAM</strong> com a URL dos repositorios para serem baixados</li>
+    <li>Edite os arquivos <strong>docker\back.conf</strong> e <strong>docker\front.conf</strong> para configurar o nginx ,adicione a entrada do seu repositorio</li>
     <li>Execute o comando <strong>$sudo make launchwithrepos</strong> </li>
     <li>Entrar no container <strong>$sudo make bash</strong> </li>
 </ol>
