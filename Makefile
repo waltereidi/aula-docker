@@ -19,18 +19,18 @@ run:
 	--volume=./front:/var/www/front \
 	--volume=./docker/back.conf:/etc/nginx/sites-available/back.conf \
 	--volume=./docker/front.conf:/etc/nginx/sites-available/front.conf \
-	--name meu_container debian12 \
+	--name python_django debian12 \
 	--extra_hosts = host.docker.internal:host-gateway 
 bash:
-	docker exec -it -u walter meu_container bash 
+	docker exec -it -u walter python_django bash 
 root:
-	docker exec -it meu_container bash
+	docker exec -it python_django bash
 start:
-	docker start meu_container
+	docker start python_django
 stop:
-	docker stop meu_container
+	docker stop python_django
 rm:
-	docker rm meu_container
+	docker rm python_django
 rmi:
 	docker image rm debian12
 clean: rm rmi
