@@ -1,0 +1,39 @@
+version: '3.9'
+
+services:
+  python:
+    image: python:3.9  # Use the latest Python image
+    container_name: pythoncontainer
+    command: tail -f /dev/null  # Keeps the container running
+  nginx:
+    image: nginx:latest
+    container_name: nginx_container
+    ports:
+      - "8001:8001"
+      - "5173:5173"
+    volumes:
+      - ./back.conf:/etc/nginx/sites-available/back.conf 
+      - ./front.conf:/etc/nginx/sites-available/front.conf 
+    depends_on:
+      - python
+  db:
+    image: postgres
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ../back:var/www/back
+    ports:
+      - "8000:8000"
+    environment:
+      - POSTGRES_NAME=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    depends_on:
+      - db
