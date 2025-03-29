@@ -1,5 +1,1 @@
-matplotlib
-med2image
-nibabel
-pillow
-pydicom
+django<4.0
