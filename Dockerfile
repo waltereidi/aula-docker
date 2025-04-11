@@ -21,7 +21,8 @@ COPY requirements.txt  /app/
  
 # run this command to install all dependencies 
 RUN pip install --no-cache-dir -r requirements.txt
- 
+RUN pip install debugpy
+
 # Copy the Django project to the container
 COPY . /app/
  
@@ -29,4 +30,4 @@ COPY . /app/
 EXPOSE 8000
  
 # Run Django’s development server
-CMD ["python3.9", "manage.py", "runserver", "0.0.0.0:8000"]
+CMD ["python3.9", "debug.py", "--listen", "0.0.0.0:9001" , "--wait-for-client" , "-m"]
