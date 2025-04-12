@@ -30,4 +30,4 @@ COPY . /app/
 EXPOSE 8000
  
 # Run Django’s development server
-CMD ["python3.9", "debug.py", "--listen", "0.0.0.0:9001" , "--wait-for-client" , "-m"]
+CMD ["python3.9", "debug.py", "--listen", "0.0.0.0:5678" , "--wait-for-client" , "-m"]
